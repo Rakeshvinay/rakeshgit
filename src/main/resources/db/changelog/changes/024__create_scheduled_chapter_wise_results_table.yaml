@@ -1,0 +1,147 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-scheduled-chapter-wise-results-table
+      author: Brihathi
+      changes:
+        - createTable:
+            tableName: scheduled_chapter_wise_results
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: scheduled_exam_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: edu_scheduled_exam_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: tenant_id
+                  type: BIGINT
+
+              - column:
+                  name: educator_id
+                  type: BIGINT
+
+              - column:
+                  name: branch_id
+                  type: VARCHAR(255)
+
+              - column:
+                  name: batch_id
+                  type: VARCHAR(255)
+              - column:
+                  name: chapter_id
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: subject
+                  type: VARCHAR(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: chapter
+                  type: VARCHAR(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: difficulty_level
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: marks
+                  type: INTEGER
+              - column:
+                  name: duration
+                  type: INTEGER # in seconds or minutes as per your logic
+              - column:
+                  name: percentage
+                  type: DECIMAL(5,2)
+              - column:
+                  name: summary
+                  type: TEXT
+
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                 
+ 
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_chapter_wise_results
+            baseColumnNames: user_id
+            constraintName: fk_scwr_user
+            referencedTableName: users
+            referencedColumnNames: user_id
+            onDelete: CASCADE
+        
+
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_chapter_wise_results
+            baseColumnNames: scheduled_exam_id
+            constraintName: fk_scwr_scheduled_exams
+            referencedTableName: scheduled_exams
+            referencedColumnNames: scheduled_exam_id
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_chapter_wise_results
+            baseColumnNames: edu_scheduled_exam_id
+            constraintName: fk_scwr_edu_schd_exms
+            referencedTableName: educator_scheduled_exams
+            referencedColumnNames: edu_scheduled_exam_id
+
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_chapter_wise_results
+            baseColumnNames: tenant_id
+            constraintName: fk_scwr_tenants
+            referencedTableName: tenants
+            referencedColumnNames: tenant_id
+
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_chapter_wise_results
+            baseColumnNames: educator_id
+            constraintName: fk_scwr_educators
+            referencedTableName: educators
+            referencedColumnNames: educator_id
+
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_chapter_wise_results
+            baseColumnNames: branch_id
+            constraintName: fk_scwr_branch
+            referencedTableName: branches
+            referencedColumnNames: branch_id
+
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_chapter_wise_results
+            baseColumnNames: batch_id
+            constraintName: fk_scwr_batches
+            referencedTableName: batches
+            referencedColumnNames: batch_id
+
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_chapter_wise_results
+            baseColumnNames: chapter_id
+            constraintName: fk_scwr_chapter
+            referencedTableName: chapters
+            referencedColumnNames: chapter_id
+            onDelete: CASCADE
+ 

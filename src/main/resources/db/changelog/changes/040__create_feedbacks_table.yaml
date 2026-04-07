@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-feedbacks-table
+      author: brihathi
+      changes:
+        - createTable:
+            tableName: feedbacks
+            columns:
+              - column:
+                  name: uuid
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tenant_id
+                  type: BIGINT      
+              - column:
+                  name: feedback_type
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    checkConstraint: "feedback_type IN ('APP', 'EXAM')"
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: phone
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: feedback
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: review
+                  type:  VARCHAR(255)
+                  constraints:
+                    nullable: true    
+        - addForeignKeyConstraint:
+            baseTableName: feedbacks
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: user_id
+            constraintName: fk_feedbacks_user_id
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: SET NULL 

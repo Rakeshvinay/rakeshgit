@@ -1,0 +1,95 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: brihathi
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: enrollment_Id
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+              - column:
+                  name: phone_number
+                  type: BIGINT
+              - column:
+                  name: date_of_birth
+                  type: DATE
+              - column:
+                  name: grade
+                  type: VARCHAR(10)
+              - column:
+                  name: state
+                  type: VARCHAR(100)
+              - column:
+                  name: city
+                  type: VARCHAR(100)
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: batch
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: branch
+                  type: VARCHAR(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: profile_image
+                  type: varchar(255)
+              - column:
+                  name: last_login
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: true
+              - column:
+                  name: current_token
+                  type: varchar(512)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: parent_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: parent_phone
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+              - column:
+                    name: tenant_id
+                    type: BIGINT
+                    constraints:
+                        nullable: false 
+        - addForeignKeyConstraint:
+            baseTableName: users
+            baseColumnNames: tenant_id
+            constraintName: fk_users_tenants
+            referencedTableName: tenants
+            referencedColumnNames: tenant_id
+            onDelete: CASCADE

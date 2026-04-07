@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - changeSet:
+      id: 400
+      author: brihathi
+      changes:
+        - createTable:
+            tableName: exam_final_results
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: exam_id
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: tenant_id
+                  type: INTEGER
+              - column:
+                  name: total_time_spent
+                  type: VARCHAR(8)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: submitted_date_time
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_marks
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: exam_final_results
+            baseColumnNames: exam_id
+            constraintName: fk_exam_final_results_exam
+            referencedTableName: exam
+            referencedColumnNames: exam_id
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: exam_final_results
+            baseColumnNames: tenant_id
+            constraintName: fk_exam_final_results_tenants
+            referencedTableName: tenants
+            referencedColumnNames: tenant_id

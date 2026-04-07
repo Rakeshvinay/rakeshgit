@@ -1,0 +1,142 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-scheduled-exams-table
+      author: brihathi
+      changes:
+        - createTable:
+            tableName: scheduled_exams
+            columns:
+              - column:
+                  name: scheduled_exam_id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: user_id
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_scheduled_exam_user
+                    references: users(user_id)
+              - column:
+                  name: edu_scheduled_exam_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: educator_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: branch_id
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: batch_id
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: subject_id
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: chapter_id
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: exam_type
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: difficulty
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                name: qids_list
+                type: TEXT[]
+                constraints:
+                  nullable: false
+              - column:
+                  name: grade
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_marks
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_duration
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_date
+                  type: TIMESTAMP
+              - column:
+                  name: end_date
+                  type: TIMESTAMP
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+                  defaultValue: PENDING
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams
+            baseColumnNames: chapter_id
+            constraintName: fk_scheduled_exam_chapter
+            referencedTableName: chapters
+            referencedColumnNames: chapter_id
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams
+            baseColumnNames: educator_id
+            constraintName: fk_scheduled_exam_educators
+            referencedTableName: educators
+            referencedColumnNames: educator_id
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams
+            baseColumnNames: edu_scheduled_exam_id
+            constraintName: fk_scheduled_exam_educators
+            referencedTableName: educators_scheduled_exams
+            referencedColumnNames: edu_scheduled_exam_id
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams
+            baseColumnNames: tenant_id
+            constraintName: fk_scheduled_exam_tenants
+            referencedTableName: tenants
+            referencedColumnNames: tenant_id
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams
+            baseColumnNames: branch_id
+            constraintName: fk_scheduled_exam_branches
+            referencedTableName: branches
+            referencedColumnNames: branch_id
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams
+            baseColumnNames: batch_id
+            constraintName: fk_scheduled_exam_batches
+            referencedTableName: batches
+            referencedColumnNames: batch_id
+ 

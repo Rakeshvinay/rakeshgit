@@ -1,0 +1,87 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-scheduled-exams-your-score-progress-table
+      author: Brihathi
+      changes:
+        - createTable:
+            tableName: scheduled_exams_your_score_progress
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: branch_id
+                  type: VARCHAR(255)
+              - column:
+                  name: batch_id
+                  type: VARCHAR(255)
+              - column:
+                  name: subject
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: avg_marks
+                  type: INTEGER
+              - column:
+                  name: date
+                  type: DATE
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams_your_score_progress
+            baseColumnNames: user_id
+            constraintName: fk_seyspm_users
+            referencedTableName: users
+            referencedColumnNames: user_id
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams_your_score_progress
+            baseColumnNames: scheduled_exam_id
+            constraintName: fk_seyspm_sem
+            referencedTableName: scheduled_exams
+            referencedColumnNames: scheduled_exam_id
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams_your_score_progress
+            baseColumnNames: edu_scheduled_exam_id
+            constraintName: fk_seyspm_esem
+            referencedTableName: educator_scheduled_exams
+            referencedColumnNames: edu_scheduled_exam_id
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams_your_score_progress
+            baseColumnNames: tenant_id
+            constraintName: fk_seyspm_tenants
+            referencedTableName: tenants
+            referencedColumnNames: tenant_id
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams_your_score_progress
+            baseColumnNames: educator_id
+            constraintName: fk_seyspm_educators
+            referencedTableName: educators
+            referencedColumnNames: educator_id
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams_your_score_progress
+            baseColumnNames: branch_id
+            constraintName: fk_seyspm_branches
+            referencedTableName: branches
+            referencedColumnNames: branch_id
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams_your_score_progress
+            baseColumnNames: batch_id
+            constraintName: fk_seyspm_batches
+            referencedTableName: batches
+            referencedColumnNames: batch_id
+
+ 
+ 

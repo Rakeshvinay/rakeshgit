@@ -1,0 +1,90 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changes/002_create_users_table.yaml    
+
+  - include:
+      file: db/changelog/changes/001_create_tenants_table.yaml
+  - include:
+      file: db/changelog/changes/003_create_tenant_staff_table.yaml
+  - include:
+      file: db/changelog/changes/004_create_admins_table.yaml
+  - include:
+      file: db/changelog/changes/005__create_chapters_table.yaml
+  - include:
+      file: db/changelog/changes/006__insert_special_chapters.yaml  
+  - include:
+      file: db/changelog/changes/007__create_grades_table.yaml
+  - include:
+      file: db/changelog/changes/008__create_difficulties_table.yaml
+  - include:
+      file: db/changelog/changes/009__create_questions_public_table.yaml
+  - include:
+      file: db/changelog/changes/010__create_questions_tenant_table.yaml
+  - include:
+      file: db/changelog/changes/011__create_educators_table.yaml
+  - include:
+      file:db/changelog/changes/012_create_branches_table.yaml
+  - include:
+      file:db/changelog/changes/013_create_batches_table.yaml
+  - include:
+      file:db/changelog/changes/014_create_educator_scheduled_exams_table.yaml
+  - include:
+      file:db/changelog/changes/015_create_scheduled_exams_table.yaml
+  - include:
+      file:db/changelog/changes/016_create_scheduled_examresults_table.yaml
+  - include:
+      file:db/changelog/changes/017_create_scheduled_exam_final_results_table.yaml
+  - include:
+      file:db/changelog/changes/018_create_scheduled_chapter_results_table.yaml
+  - include:
+      file:db/changelog/changes/019_create_exams_table.yaml
+  - include:
+      file:db/changelog/changes/020_create_exam_results_table.yaml
+  - include:
+      file:db/changelog/changes/021_create_exam_final_results_table.yaml
+  - include:
+      file:db/changelog/changes/022_create_chapter_results_table.yaml
+  - include:
+      file:db/changelog/changes/023_create_scheduled_exam_results_summary_table.yaml
+  - include:
+      file:db/changelog/changes/024_create_scheduled_chapter_wise_results_table.yaml
+  - include:
+      file:db/changelog/changes/025_create_scheduled_exams_score_predictor_table.yaml
+  - include:
+      file:db/changelog/changes/026_create_scheduled_exams_time_analysis_table.yaml
+  - include:
+      file:db/changelog/changes/027_create_scheduled_exams_leadership_board_table.yaml
+  - include:
+      file:db/changelog/changes/028_create_scheduled_exams_your_score_progress_table.yaml
+  - include:
+      file:db/changelog/changes/029_create_scheduled_exams_subject_wise_performance_bar_table.yaml
+  - include:
+      file:db/changelog/changes/030_create_scheduled_exams_difficulty_wise_performance_table.yaml
+  - include:
+      file:db/changelog/changes/031__create_exam_results_summary_table.yaml
+  - include:
+      file:db/changelog/changes/032__create_chapter_wise_results_table.yaml
+  - include:
+      file:db/changelog/changes/033__create_score_predictor_table.yaml
+  - include:
+      file:db/changelog/changes/034__create_time_analysis_table.yaml
+  - include:
+      file:db/changelog/changes/035__create_leadership_board_table.yaml
+  - include:
+      file:db/changelog/changes/036__create_your_score_progress_table.yaml
+  - include:
+      file:db/changelog/changes/037__create_subject_wise_performance_bar_table.yaml
+  - include:
+      file:db/changelog/changes/038__create_difficulty_wise_performance_table.yaml
+  - include:
+      file:db/changelog/changes/039__create_error_tracker_table.yaml
+  - include:
+      file:db/changelog/changes/040__create_feedbacks_table.yaml
+  - include:
+      file:db/changelog/changes/041__create_examquestionsreport_table.yaml
+  - include:
+      file:db/changelog/changes/042__create_mystery_box_table.yaml
+  - include:
+      file:db/changelog/changes/043__create_notifications_table.yaml
+ 
+

@@ -1,0 +1,159 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-notifications-table
+      author: brihathi
+      changes:
+        - createTable:
+            tableName: notifications
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: scheduled_exam_id
+                  type: BIGINT
+              - column:
+                  name: edu_scheduled_exam_id
+                  type: BIGINT
+              - column:
+                  name: exam_id
+                  type: BIGINT
+              - column:
+                  name: user_id
+                  type: INTEGER
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_exam_user
+                    references: users(user_id)
+            #   - column:
+            #       name: edu_scheduled_exam_id
+            #       type: BIGINT
+            #       constraints:
+            #         nullable: true
+              - column:
+                  name: educator_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tenant_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: branch_id
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: batch_id
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+            #   - column:
+            #       name: paper_type
+            #       type: VARCHAR(250)
+            #       constraints:
+            #         nullable: true
+             
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: exam_type
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: true
+            #   - column:
+            #       name: category
+            #       type: VARCHAR(255)
+            #       constraints:
+            #         nullable: true
+              - column:
+                  name: title
+                  type: VARCHAR(200)
+ 
+              - column:
+                  name: message
+                  type: TEXT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: VARCHAR(255)  
+                  defaultValue: PENDING
+                  constraints:
+                    nullable: true
+ 
+              - column:
+                  name: retry_count
+                  type: INTEGER
+                  defaultValue: 0
+              - column:
+                  name: total_duration
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_date
+                  type: TIMESTAMP
+              - column:
+                  name: end_date
+                  type: TIMESTAMP
+              - column:
+                  name: schedule_time
+                  type: TIMESTAMP
+            #   - column:
+            #       name: status
+            #       type: VARCHAR(255)
+            #       defaultValue: PENDING
+            #       constraints:
+            #         nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              
+        - addForeignKeyConstraint:
+            baseTableName: notifications
+            baseColumnNames: educator_id
+            constraintName: fk_notifications_educators
+            referencedTableName: educators
+            referencedColumnNames: educator_id
+        - addForeignKeyConstraint:
+            baseTableName: notifications
+            baseColumnNames: user_id
+            constraintName: fk_notifications_users
+            referencedTableName: users
+            referencedColumnNames: user_id
+        - addForeignKeyConstraint:
+            baseTableName: notifications
+            baseColumnNames: edu_scheduled_exam_id
+            constraintName: fk_notifications_educator_scheduled_exams
+            referencedTableName: educator_scheduled_exams
+            referencedColumnNames: edu_scheduled_exam_id
+        - addForeignKeyConstraint:
+            baseTableName: notifications
+            baseColumnNames: tenant_id
+            constraintName: fk_notifications_tenants
+            referencedTableName: tenants
+            referencedColumnNames: tenant_id
+        - addForeignKeyConstraint:
+            baseTableName: notifications
+            baseColumnNames: branch_id
+            constraintName: fk_notifications_branches
+            referencedTableName: branches
+            referencedColumnNames: branch_id
+        - addForeignKeyConstraint:
+            baseTableName: notifications
+            baseColumnNames: batch_id
+            constraintName: fk_notifications_batches
+            referencedTableName: batches
+            referencedColumnNames: batch_id
+ 
+ 
+ 

@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-examquestionsreport-table
+      author: brihathi
+      changes:
+        - createTable:
+            tableName: examquestionsreport
+            columns:
+              - column:
+                  name: uuid
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: BIGINT  
+              - column:
+                  name: q_id
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: question_text
+                  type: TEXT
+              - column:
+                  name: answered_option
+                  type: VARCHAR(255)
+              - column:
+                  name: correct_answer_option
+                  type: VARCHAR(255)
+              - column:
+                  name: report
+                  type: TEXT
+              - column:
+                  name: answer_option1
+                  type: VARCHAR(255)
+              - column:
+                  name: answer_option2
+                  type: VARCHAR(255)
+              - column:
+                  name: answer_option3
+                  type: VARCHAR(255)
+              - column:
+                  name: answer_option4
+                  type: VARCHAR(255)
+              - column:
+                  name: is_validated
+                  type: VARCHAR(50)
+              - column:
+                  name: actions_taken
+                  type: TEXT   
+ 
+        - - addCheck:
+            tableName: examquestionsreport
+            columnNames: is_validated
+            constraintName: chk_is_validated_values
+            checkConstraint: "is_validated IN ('not_started', 'under_review', 'finalized')"
+ 
+ 

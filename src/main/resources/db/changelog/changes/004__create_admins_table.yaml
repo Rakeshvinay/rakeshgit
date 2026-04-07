@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-admins-table
+      author: brihathi
+      changes:
+        - createTable:
+            tableName: admins
+            columns:
+              - column:
+                  name: admin_id
+                  type: INTEGER
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role
+                  type: VARCHAR(50)
+              - column:
+                  name: status
+                  type: VARCHAR(250)
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP

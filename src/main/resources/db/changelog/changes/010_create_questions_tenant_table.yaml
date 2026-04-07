@@ -1,0 +1,148 @@
+databaseChangeLog:
+  - changeSet:
+      id: 301
+      author: brihathibts
+      changes:
+        - createTable:
+            tableName: questions_tenant
+            columns:
+              - column:
+                  name: qid
+                  type: VARCHAR(8)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              # - column:
+              #     name: admin_id
+              #     type: INTEGER
+              #     constraints:
+              #       nullable: false
+              #       foreignKeyName: fk_questions_admin
+              #       references: admin(admin_id)
+              - column:
+                  name: tenant_id
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_questions_tenant
+                    references: tenant(tenant_id)
+              - column:
+                  name: question_text
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: answer_option1
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: answer_option2
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: answer_option3
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: answer_option4
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: correct_answer_option
+                  type: VARCHAR(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: subject
+                  type: VARCHAR(250)
+                  constraints:
+                    nullable: false
+                    checkConstraint: "subject IN ('PHYSICS', 'CHEMISTRY', 'BOTANY', 'ZOOLOGY')"
+              - column:
+                  name: chapter
+                  type: VARCHAR(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: topic
+                  type: VARCHAR(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sub_topic
+                  type: VARCHAR(200)
+              - column:
+                  name: difficulty
+                  type: VARCHAR(250)
+                  constraints:
+                    nullable: false
+                    checkConstraint: "difficulty IN ('BASIC', 'INTERMEDIATE', 'ADVANCED')"
+              - column:
+                  name: grade
+                  type: VARCHAR(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: brief_explanation
+                  type: TEXT
+              - column:
+                  name: is_pyq
+                  type: BOOLEAN
+              - column:
+                  name: times_repeated
+                  type: INTEGER
+                  defaultValueNumeric: 0
+              - column:
+                  name: source
+                  type: VARCHAR(255)
+              - column:
+                  name: status
+                  type: VARCHAR(250)
+                  constraints:
+                    nullable: false
+                    checkConstraint: "status IN ('ACTIVE', 'INACTIVE', 'DRAFT', 'ARCHIVED')"
+              - column:
+                  name: topic
+                  type: VARCHAR(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sub_topic
+                  type: VARCHAR(200)
+              # - column:
+              #     name: is_subscribed
+              #     type: BOOLEAN
+              #     constraints:
+              #       nullable: false
+              #       checkConstraint: "is_subscribed IN ('TRUE', 'FALSE')"
+              - column:
+                  name: chapter_id
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - addUniqueConstraint:
+                tableName: questions_tenant
+                columnNames: question_text
+                constraintName: uq_questions_tenant_question_text
+             -  addForeignKeyConstraint:
+                baseTableName: questions_tenant
+                baseColumnNames: chapter_id
+                constraintName: fk_questions_tenant_chapter
+                referencedTableName: chapters
+                referencedColumnNames: chapter_id
+                onDelete: SET NULL 
+             
+
+

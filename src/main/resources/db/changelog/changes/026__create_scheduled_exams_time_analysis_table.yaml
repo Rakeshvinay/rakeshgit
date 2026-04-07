@@ -1,0 +1,101 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-scheduled-exams-time-analysis-table
+      author: Brihathi
+      changes:
+        - createTable:
+            tableName: scheduled_exams_time_analysis
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+             -  column:
+                  name: scheduled_exam_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: edu_scheduled_exam_id
+                  type: BIGINT 
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: BIGINT
+              - column:
+                  name: educator_id
+                  type: BIGINT
+              - column:
+                  name: branch_id
+                  type: VARCHAR(255)
+              - column:
+                  name: batch_id
+                  type: VARCHAR(255)
+              - column:
+                  name: subject
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: avg_time
+                  type: INTEGER
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams_time_analysis
+            baseColumnNames: user_id
+            constraintName: fk_setp_users
+            referencedTableName: users
+            referencedColumnNames: user_id
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams_time_analysis
+            baseColumnNames: scheduled_exam_id
+            constraintName: fk_setp_sem
+            referencedTableName: scheduled_exams
+            referencedColumnNames: scheduled_exam_id
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams_time_analysis
+            baseColumnNames: edu_scheduled_exam_id
+            constraintName: fk_setp_esem
+            referencedTableName: educator_scheduled_exams
+            referencedColumnNames: edu_scheduled_exam_id
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams_time_analysis
+            baseColumnNames: tenant_id
+            constraintName: fk_setp_tenants
+            referencedTableName: tenants
+            referencedColumnNames: tenant_id
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams_time_analysis
+            baseColumnNames: educator_id
+            constraintName: fk_setp_educators
+            referencedTableName: educators
+            referencedColumnNames: educator_id
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams_time_analysis
+            baseColumnNames: branch_id
+            constraintName: fk_setp_branches
+            referencedTableName: branches
+            referencedColumnNames: branch_id
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exams_time_analysis
+            baseColumnNames: batch_id
+            constraintName: fk_setp_batches
+            referencedTableName: batches
+            referencedColumnNames: batch_id
+
+        
+ 
+ 

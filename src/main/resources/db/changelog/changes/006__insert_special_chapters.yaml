@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-special-chapters
+      author: brihathi
+      changes:
+        - insert:
+            tableName: chapters
+            columns:
+              - column: { name: chapter_id, value: "PHY-ALL" }
+              - column: { name: chapter, value: "All Physics Chapters" }
+              - column: { name: subject, value: "PHYSICS" }
+              - column: { name: weightage, value: 100.00 }
+              - column: { name: number_of_questions, value: 45 }
+        - insert:
+            tableName: chapters
+            columns:
+              - column: { name: chapter_id, value: "CHE-ALL" }
+              - column: { name: chapter, value: "All Chemistry Chapters" }
+              - column: { name: subject, value: "CHEMISTRY" }
+              - column: { name: weightage, value: 100.00 }
+              - column: { name: number_of_questions, value: 45 }
+        - insert:
+            tableName: chapters
+            columns:
+              - column: { name: chapter_id, value: "BOT-ALL" }
+              - column: { name: chapter, value: "All Botany Chapters" }
+              - column: { name: subject, value: "BOTANY" }
+              - column: { name: weightage, value: 100.00 }
+              - column: { name: number_of_questions, value: 45 }
+        - insert:
+            tableName: chapters
+            columns:
+              - column: { name: chapter_id, value: "ZOO-ALL" }
+              - column: { name: chapter, value: "All Zoology Chapters" }
+              - column: { name: subject, value: "ZOOLOGY" }
+              - column: { name: weightage, value: 100.00 }
+              - column: { name: number_of_questions, value: 45 }
+       
+        - insert:
+            tableName: chapters
+            columns:
+              - column: { name: chapter_id, value: "ALL-ALL" }
+              - column: { name: chapter, value: "All Chapters" }
+              - column: { name: subject, value: "ALL" }
+              - column: { name: weightage, value: 100.00 }
+              - column: { name: number_of_questions, value: 180 }

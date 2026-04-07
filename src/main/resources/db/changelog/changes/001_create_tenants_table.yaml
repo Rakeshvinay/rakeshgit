@@ -1,0 +1,66 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-tenants-table
+      author: brihathi
+      changes:
+        - createTable:
+            tableName: tenants
+            columns:
+              - column:
+                  name: tenant_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: subdomain
+                  type: VARCHAR(255)
+              - column:
+                  name: college_name
+                  type: VARCHAR(255)
+              - column:
+                  name: tenant_logo
+                  type: VARCHAR(300)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: tenant_email
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password
+                  type: VARCHAR(250)
+              - column:
+                  name: tenant_phone
+                  type: BIGINT
+              - column:
+                  name: tenant_address
+                  type: VARCHAR(500)
+              - column:
+                  name: theme
+                  type: VARCHAR(100)
+              - column:
+                  name: background
+                  type: VARCHAR(250)
+              - column:
+                  name: text_colour
+                  type: VARCHAR(100)
+              - column:
+                  name: hero_image
+                  type: VARCHAR(250)
+              - column:
+                  name: question_table
+                  type: VARCHAR(100)
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+           

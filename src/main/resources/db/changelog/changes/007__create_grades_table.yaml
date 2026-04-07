@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-grades-table
+      author: brihathi
+      changes:
+        - createTable:
+            tableName: grades
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: grade
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+ 

@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-chapters-table
+      author: brihathi
+      changes:
+        - createTable:
+            tableName: chapters
+            columns:
+              - column:
+                  name: chapter_id
+                  type: VARCHAR(50)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: chapter
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: subject
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: weightage
+                  type: DECIMAL(5,2)
+              - column:
+                  name: number_of_questions
+                  type: INTEGER
+ 
+ 

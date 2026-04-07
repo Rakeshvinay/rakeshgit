@@ -1,0 +1,173 @@
+
+databaseChangeLog:
+  - changeSet:
+      id: create-scheduled-exam-results-summary-table
+      author: brihathi
+
+      changes:
+        - createTable:
+            tableName: scheduled_exam_results_summary
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: scheduled_exam_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: edu_scheduled_exam_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: tenant_id
+                  type: BIGINT
+
+              - column:
+                  name: educator_id
+                  type: BIGINT
+
+              - column:
+                  name: branch_id
+                  type: VARCHAR(255)
+
+              - column:
+                  name: batch_id
+                  type: VARCHAR(255)
+
+              - column:
+                  name: total_questions
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: total_answered
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: not_answered
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: marked_for_review
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: answered_and_marked_for_review
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: not_visited
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: corrected_count
+                  type: INTEGER
+
+              - column:
+                  name: wrong_count
+                  type: INTEGER
+
+              - column:
+                  name: difficulty_level
+                  type: VARCHAR(255)
+
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+        # ---------------- INDEXES ----------------
+        - createIndex:
+            indexName: idx_exam_results_summary_user_exam
+            tableName: scheduled_exam_results_summary
+            columns:
+              - column:
+                  name: user_id
+              - column:
+                  name: scheduled_exam_id
+
+        - createIndex:
+            indexName: idx_exam_results_summary_tenant
+            tableName: scheduled_exam_results_summary
+            columns:
+              - column:
+                  name: tenant_id
+
+        # ---------------- FOREIGN KEYS ----------------
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exam_results_summary
+            baseColumnNames: user_id
+            constraintName: fk_exam_results_summary_user
+            referencedTableName: users
+            referencedColumnNames: user_id
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exam_results_summary
+            baseColumnNames: scheduled_exam_id
+            constraintName: fk_exam_results_summary_scheduled_exam
+            referencedTableName: scheduled_exams
+            referencedColumnNames: scheduled_exam_id
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exam_results_summary
+            baseColumnNames: edu_scheduled_exam_id
+            constraintName: fk_exam_results_summary_edu_exam
+            referencedTableName: educator_scheduled_exams
+            referencedColumnNames: edu_scheduled_exam_id
+
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exam_results_summary
+            baseColumnNames: tenant_id
+            constraintName: fk_exam_results_summary_tenant
+            referencedTableName: tenants
+            referencedColumnNames: tenant_id
+
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exam_results_summary
+            baseColumnNames: educator_id
+            constraintName: fk_exam_results_summary_educator
+            referencedTableName: educators
+            referencedColumnNames: educator_id
+
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exam_results_summary
+            baseColumnNames: branch_id
+            constraintName: fk_exam_results_summary_branch
+            referencedTableName: branches
+            referencedColumnNames: branch_id
+
+        - addForeignKeyConstraint:
+            baseTableName: scheduled_exam_results_summary
+            baseColumnNames: batch_id
+            constraintName: fk_exam_results_summary_batch
+            referencedTableName: batches
+            referencedColumnNames: batch_id

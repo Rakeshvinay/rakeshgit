@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-branches-table
+      author: brihathi
+      changes:
+        - createTable:
+            tableName: branches
+            columns:
+              - column:
+                  name: branch_id
+                  type: VARCHAR(255)
+                  # autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: branch_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: branches
+            baseColumnNames: tenant_id
+            referencedTableName: tenants
+            referencedColumnNames: tenant_id
+            constraintName: fk_branches_tenant
+    
+ 

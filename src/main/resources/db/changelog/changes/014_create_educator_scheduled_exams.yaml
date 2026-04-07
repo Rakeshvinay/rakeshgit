@@ -1,0 +1,70 @@
+-databaseChangeLog:
+   - changeSet:
+      id: create-educator-scheduled-exams-table
+      author: brihathi
+      changes:
+        - createTable:
+            tableName: educators_scheduled_exams
+            columns:
+              - column:
+                  name: edu_scheduled_exam_id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: educator_id
+                  type: BIGINT
+              - column: 
+                  name: tenant_id
+                  type: BIGINT
+              - column:
+                  name: branch 
+                  type: VARCHAR(250)
+              - column:
+                  name: batch
+                  type: VARCHAR(250)
+              - column: 
+                  name: exam_type
+                  type: VARCHAR(100)
+              - column:
+                  name: exam_status
+                  type: VARCHAR(100)
+              - column: 
+                  name: grade
+                  type: VARCHAR(50)
+              - column:
+                  name: difficulty
+                  type: VARCHAR(50)
+              - column:
+                  name: scheduled_date
+                  type: DATE
+              - column:
+                  name: scheduled_time
+                  type: TIMESTAMP
+              - column: 
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP 
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                name: exam_end_time
+                type: TIMESTAMP 
+                constraints:
+                  nullable: false
+         -addForeignKeyConstraint:
+             baseTableName: educators_scheduled_exams
+             baseColumnName: tenant_id
+             constraintName: fk_tenant_staff_tenants
+             referencedTableName: tenants
+             referencedColumnName: tenant_id
+          -addForeignKeyConstraint:
+             baseTableName: educators_scheduled_exams
+             baseColumnName: educator_id
+             constraintName: fk_educator_tenants
+             referencedTableName: educators
+             referencedColumnName: educator_id
