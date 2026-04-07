@@ -52,6 +52,7 @@ public class AdminController {
             "message", "Admin updated successfully",
             "admin", updatedAdmin
         ));
+       System.out.println("this is not needed i think now ");
     }
 
     @DeleteMapping("/{id}")
